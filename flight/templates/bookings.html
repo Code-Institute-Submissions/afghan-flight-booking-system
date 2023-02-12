@@ -7,3 +7,24 @@
     <script type="text/javascript" src="{% static 'js/bookings.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/bookings_style.css' %}">
 {% endblock head %}
+
+{% block body %}
+<section class="section section1">
+    <div class="container">
+        {% if tickets %}
+            {% for ticket in tickets %}
+                <div class="row each-booking-div" id="{{ticket.ref_no}}">
+                    <div class="col-2" style="display: flex;">
+                        <div style="display: flex; color: #666666; margin-top: auto;">
+                            <div>
+                                <span style="font-size: 2.1em;">{{ticket.flight_ddate | date:"d"}}</span>
+                            </div>
+                            <div style="font-size: smaller; display: flex; margin: auto 0; padding-left: 5px; line-height: 1em;">
+                                <div style="margin: auto;">
+                                    <div style="margin-bottom: 1px;">{{ticket.flight_ddate | date:"D"}}</div>
+                                    <div style="margin-top: 1px;">{{ticket.flight_ddate | date:"M'y"}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
