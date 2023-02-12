@@ -27,4 +27,44 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-4 middle-div">
+                        <div style="width:100%">
+                            <div class="row places-div" style=" display: flex;">
+                                <div style="max-width: 45%;">{{ticket.flight.origin.city}}</div>
+                                <div>&nbsp;-&nbsp;</div>
+                                <div style="max-width: 45%;">{{ticket.flight.destination.city}}</div>
+                            </div>
+                            <div class="row places-div" style="font-size: .8em; color: #999999; ">
+                                <div style="max-width: 100%;">{{ticket.flight.airline}} &middot; {{ticket.flight.plane}} &middot; {{ticket.passengers.count}} Passengers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 middle-div">
+                        <div style="font-size: 1.2em; color: #945937;">{{ticket.ref_no}}</div>
+                    </div>
+                    <div class="col-2 middle-div">
+                        <div>
+                            <div class="row status-div">
+                                {% if ticket.status == 'CONFIRMED' %}
+                                    <div class="green">{{ticket.status}}</div>
+                                {% endif %}
+                                {% if ticket.status == 'PENDING' %}
+                                    <div class="orange">{{ticket.status}}</div>
+                                {% endif %}
+                                {% if ticket.status == 'CANCELLED' %}
+                                    <div class="red">{{ticket.status}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="row booking-date-div" style="font-size: .7em; color: #666;">
+                                {% if ticket.status == 'CONFIRMED' %}
+                                    Booked on: {{ticket.booking_date | date:"D, M d Y"}}
+                                {% endif %}
+                                {% if ticket.status == 'PENDING' %}
+                                    Reviewed on: {{ticket.booking_date | date:"D, M d Y"}}
+                                {% endif %}
+                                {% if ticket.status == 'CANCELLED' %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
 {% endblock %}
