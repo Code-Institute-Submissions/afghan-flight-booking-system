@@ -435,4 +435,66 @@
                             </span>
                             <input type="hidden" id="basefare" value="{% if flight2 %}{{flight1.economy_fare | add:flight2.economy_fare}}{% else %}{{flight1.economy_fare}}{% endif %}">
                         {% endif %}
+                    </div>
+                </div>
+                <div class="row surcharges">
+                    <div class="surcharges-label">Fee & Surcharges: </div>
+                    <div class="surcharges-value">₹ <span>{{fee}}</span></div>
+                    <input type="hidden" id="fee" value="{{fee}}">
+                </div>
+                <hr>
+                <div class="total-fare">
+                    <div class="total-fare-label">Total Fare: </div>
+                    <div class="total-fare-value">
+                        {% if seat == 'First' %}
+                            ₹ <span>
+                                {% if flight2 %}
+                                    {{flight1.first_fare | add:flight2.first_fare | add:fee}}
+                                {% else %}
+                                    {{flight1.first_fare | add:fee}}
+                                {% endif %}
+                            </span>
+                        {% elif seat == 'Business' %}
+                            ₹ <span>
+                                {% if flight2 %}
+                                    {{flight1.business_fare | add:flight2.business_fare | add:fee}}
+                                {% else %}
+                                    {{flight1.business_fare | add:fee}}
+                                {% endif %}
+                            </span>
+                        {% elif seat == 'Economy' %}
+                            ₹ <span>
+                                {% if flight2 %}
+                                    {{flight1.economy_fare | add:flight2.economy_fare | add:fee}}
+                                {% else %}
+                                    {{flight1.economy_fare | add:fee}}
+                                {% endif %}
+                                </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="coupon-code">
+                <h5>Have a coupon code?</h5>
+                <hr>
+                <div class="row base-fare">
+                    <div class="col-9" style="padding: 10px 10px 10px 0px">
+                        <input type="text" name="coupon" class="form-control" placeholder="Coupon Code" style="text-transform: uppercase;">
+                    </div>
+                    <div class="col coupon-apply" style="padding: 10px 10px 10px 0px">
+                        <center>
+                            <button type="button" class="btn btn-primary">Apply</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col media-payment-btn">
+            <div>
+                <button type="submit" class="btn btn-primary">Proceed to payment</button>
+            </div>
+        </div>
+    </div>
+</form>
+</section>
 {% endblock %}
