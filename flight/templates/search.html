@@ -422,3 +422,189 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div style="height: 100%; width:100%; padding: 10%;">
+                            <div style="text-align: center; margin: auto;">
+                                <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                </svg>
+                                <br><br>
+                                <h3>Sorry, No Flight for this Search</h3>
+                                <p>
+                                    We cannnot find any flights for the cabin class of your search. Please modify your search criteria and try again.
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if trip_type == '2' and flights %}
+            <div class="query-result-div-2" style="display: none;">
+                <div class="container">
+                    <div class="row">
+                        {% if flights2 %}
+                            <div class="col-lg-3 filter-div">
+                                <div class="close-filter" style="margin-top: 0;">
+                                    <button class="btn b1" onclick="close_filter(this)">
+                                        <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="filter">
+                                    <center>
+                                        <h4>Filter Results</h4>
+                                    </center>
+                                    <div class="filter-box">
+                                        <div class="filter-price2">
+                                            <div class="font-weight-bold">Price</div>
+                                            <div>
+                                                <input type="range" class="form-control-range" min="{{min_price2}}" max="{{max_price2}}" value="{{max_price2}}" oninput="filter2()">
+                                                <div class="price-range-output">
+                                                    <div class="initial-price-range">
+                                                        <span class="currency-symbol">₹</span>
+                                                        <span class="initial-price-value">{{min_price2}}</span>
+                                                    </div>
+                                                    <div class="final-price-range">
+                                                        <span class="currency-symbol">₹</span>
+                                                        <span class="final-price-value"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!---->
+                                        <div class="time-slot2 departure-time-slot-group2">
+                                            <div class="font-weight-bold">Departure Time</div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="0" data-end="6">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        Before 6 AM
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="6" data-end="12">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        6 am - 12 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="12" data-end="18">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        12 pm - 6 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="18" data-end="24">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        After 6 pm
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="time-slot2 arrival-time-slot-group2">
+                                            <div class="font-weight-bold">Arrival Time</div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="0" data-end="6">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        Before 6 AM
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="6" data-end="12">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        6 am - 12 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="12" data-end="18">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        12 pm - 6 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="18" data-end="24">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        After 6 pm
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clr-filter-div2">
+                                        <center>
+                                            <button class="btn-link">Reset Filters</button>
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="close-filter">
+                                    <button class="btn btn-primary b2" onclick="close_filter(this)">
+                                        SHOW RESULTS
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 actual-result-div">
+                                <div class="sort-div" style="display:none">
+                                    <div class="sort-label">Sort By:</div>
+                                    <div style="display: flex;">
+                                        <div class="sort-depart">
+                                            Depart
+                                            <span>--</span>
+                                        </div>
+                                        <div class="sort-arrive">
+                                            Arrive
+                                            <span>--</span>
+                                        </div>
+                                    </div>
+                                    <div class="sort-price">
+                                        Price
+                                        <span><!--&#8593;--><!--&#8595;--></span>
+                                    </div>
+                                </div>
