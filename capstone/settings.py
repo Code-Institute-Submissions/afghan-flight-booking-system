@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import mimetypes
 
+mimetypes.add_type("text/javascript", ".js", True)
 
 if os.path.isfile('capstone.env'):
     import capstone.env
@@ -131,7 +133,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'tCzuwcSoxBJ8zP1xoSt1INUakto'
 }
 
-STATIC_URL = '/flight/static/'
+STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'flight/static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
