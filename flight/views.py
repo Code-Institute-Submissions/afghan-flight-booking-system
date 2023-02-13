@@ -41,7 +41,7 @@ def index(request):
         seat = request.POST.get('SeatClass')
         trip_type = request.POST.get('TripType')
         if(trip_type == '1'):
-            return render(request, 'flight/index.html', {
+            return render(request, 'index.html', {
             'origin': origin,
             'destination': destination,
             'depart_date': depart_date,
@@ -50,7 +50,7 @@ def index(request):
         })
         elif(trip_type == '2'):
             return_date = request.POST.get('ReturnDate')
-            return render(request, 'flight/index.html', {
+            return render(request, 'index.html', {
             'min_date': min_date,
             'max_date': max_date,
             'origin': origin,
@@ -61,7 +61,7 @@ def index(request):
             'return_date': return_date
         })
     else:
-        return render(request, 'flight/index.html', {
+        return render(request, 'index.html', {
             'min_date': min_date,
             'max_date': max_date
         })
@@ -76,14 +76,14 @@ def login_view(request):
             return HttpResponseRedirect(reverse("index"))
             
         else:
-            return render(request, "flight/login.html", {
+            return render(request, "login.html", {
                 "message": "Invalid username and/or password."
             })
     else:
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse('index'))
         else:
-            return render(request, "flight/login.html")
+            return render(request, "login.html")
 
 def register_view(request):
     if request.method == "POST":
@@ -96,7 +96,7 @@ def register_view(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "flight/register.html", {
+            return render(request, "register.html", {
                 "message": "Passwords must match."
             })
 
@@ -107,13 +107,13 @@ def register_view(request):
             user.last_name = lname
             user.save()
         except:
-            return render(request, "flight/register.html", {
+            return render(request, "register.html", {
                 "message": "Username already taken."
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "flight/register.html")
+        return render(request, "register.html")
 
 def logout_view(request):
     logout(request)
@@ -203,7 +203,7 @@ def flight(request):
 
     #print(calendar.day_name[depart_date.weekday()])
     if trip_type == '2':
-        return render(request, "flight/search.html", {
+        return render(request, "search.html", {
             'flights': flights,
             'origin': origin,
             'destination': destination,
@@ -220,7 +220,7 @@ def flight(request):
             'min_price2': math.floor(min_price2/100)*100    ##
         })
     else:
-        return render(request, "flight/search.html", {
+        return render(request, "search.html", {
             'flights': flights,
             'origin': origin,
             'destination': destination,
@@ -256,7 +256,7 @@ def review(request):
             flight2ddate = datetime(int(date2.split('-')[2]),int(date2.split('-')[1]),int(date2.split('-')[0]),flight2.depart_time.hour,flight2.depart_time.minute)
             flight2adate = (flight2ddate + flight2.duration)
         if round_trip:
-            return render(request, "flight/book.html", {
+            return render(request, "book.html", {
                 'flight1': flight1,
                 'flight2': flight2,
                 "flight1ddate": flight1ddate,
@@ -266,7 +266,7 @@ def review(request):
                 "seat": seat,
                 "fee": FEE
             })
-        return render(request, "flight/book.html", {
+        return render(request, "book.html", {
             'flight1': flight1,
             "flight1ddate": flight1ddate,
             "flight1adate": flight1adate,
@@ -328,12 +328,12 @@ def book(request):
             
 
             if f2:    ##
-                return render(request, "flight/payment.html", { ##
+                return render(request, "payment.html", { ##
                     'fare': fare+FEE,   ##
                     'ticket': ticket1.id,   ##
                     'ticket2': ticket2.id   ##
                 })  ##
-            return render(request, "flight/payment.html", {
+            return render(request, "payment.html", {
                 'fare': fare+FEE,
                 'ticket': ticket1.id
             })
@@ -366,11 +366,11 @@ def payment(request):
                     ticket2 = Ticket.objects.get(id=ticket2_id)
                     ticket2.status = 'CONFIRMED'
                     ticket2.save()
-                    return render(request, 'flight/payment_process.html', {
+                    return render(request, 'payment_process.html', {
                         'ticket1': ticket,
                         'ticket2': ticket2
                     })
-                return render(request, 'flight/payment_process.html', {
+                return render(request, 'payment_process.html', {
                     'ticket1': ticket,
                     'ticket2': ""
                 })
@@ -400,14 +400,14 @@ def get_ticket(request):
         'ticket1':ticket1,
         'current_year': datetime.now().year
     }
-    pdf = render_to_pdf('flight/ticket.html', data)
+    pdf = render_to_pdf('ticket.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
 
 def bookings(request):
     if request.user.is_authenticated:
         tickets = Ticket.objects.filter(user=request.user).order_by('-booking_date')
-        return render(request, 'flight/bookings.html', {
+        return render(request, 'bookings.html', {
             'page': 'bookings',
             'tickets': tickets
         })
@@ -446,7 +446,7 @@ def resume_booking(request):
             ref = request.POST['ref']
             ticket = Ticket.objects.get(ref_no=ref)
             if ticket.user == request.user:
-                return render(request, "flight/payment.html", {
+                return render(request, "payment.html", {
                     'fare': ticket.total_fare,
                     'ticket': ticket.id
                 })
