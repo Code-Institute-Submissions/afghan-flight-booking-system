@@ -125,15 +125,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_URL = '/flight/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+#STATIC_URL = '/flight/static/'
+#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+#STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dggry4oz1',
     'API_KEY': '619785319395311',
     'API_SECRET': 'tCzuwcSoxBJ8zP1xoSt1INUakto'
 }
-MEDIA_URL = '/flight/static/img'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#MEDIA_URL = '/flight/static/img'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 AUTH_USER_MODEL = 'flight.User'
