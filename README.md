@@ -42,3 +42,18 @@ A Django application for booking flights that is coded in Python, HTML, CSS, and
 25. constant.py - This file contains the fee amount which is charged to the user for booking flight tickets.
 26. requirements.txt - This file contains all contains all the python packages that needs to be installed to run this web application.
 27. manage.py - This file is used basically as a command-line utility and for deploying, debugging, or running our web application.
+
+# Justification
+1. Mobile responsive webpages.
+2. More complex models.
+3. More interatactive because webpages use ajax functionality (eg., fetch) written in javascript.
+4. Converts html template to downloadable pdf.
+
+# Installation
+1. Install project dependencies by running py -m pip install -r requirements.txt.
+2. Run the commands py manage.py makemigrations and py manage.py migrate in the project directory to make and apply migrations.
+3. Create superuser with py manage.py createsuperuser. This step is optional.
+4. Run the command py manage.py runserver to run the web server.
+5. Open web browser and goto 127.0.0.1:8000 url to start using the web application.
+
+yo can see my website: https://afghan-flight-booking-system.herokuapp.com/
