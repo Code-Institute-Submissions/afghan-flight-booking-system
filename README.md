@@ -15,30 +15,30 @@ A Django application for booking flights that is coded in Python, HTML, CSS, and
 7. As-you-type Search
 
 # Files & Directories
-. capstone - project directory.
-. utils.py - Contains all Django helper functions used in views.py.
-. urls.py - This file handles all the URLs of the project.
-. flight - main application directory.
-. static - contains all static content.
-. css - Contains all css files for styling the webpages.
-. js - Contains all javascript files used in the application.
-. img - Contains all image files used in the application.
-. templates/flight Contains all application templates.
-. book.html - Template for showing selected flight and reading Travellers data.
-. bookings.html - Template for showing bookings done by a user.
-. index.html - Home page template.
-. layout.html - Base template for all pages except login & register page.
-. layout2.html - Base template for login & register page.
-. login.html - Login user page.
-. payment_process.html - Page after completion of payment.
-. payment.html - Payment page.
-. register.html - Register user page.
-. search.html - Flight search result page.
-. ticket.html - Template for printing ticket(pdf).
-. admin.py - Contains some models for access to the Django administrator.
-. models.py - All models used in the application are created here.
-. urls.py - This file handles all the URLs of the web application.
-. views.py - This file contains all the application views.
-. constant.py - This file contains the fee amount which is charged to the user for booking flight tickets.
-. requirements.txt - This file contains all contains all the python packages that needs to be installed to run this web application.
-. manage.py - This file is used basically as a command-line utility and for deploying, debugging, or running our web application.
+1. capstone - project directory.
+2. utils.py - Contains all Django helper functions used in views.py.
+3. urls.py - This file handles all the URLs of the project.
+4. flight - main application directory.
+5. static - contains all static content.
+6. css - Contains all css files for styling the webpages.
+7. js - Contains all javascript files used in the application.
+8. img - Contains all image files used in the application.
+9. templates/flight Contains all application templates.
+10. book.html - Template for showing selected flight and reading Travellers data.
+11. bookings.html - Template for showing bookings done by a user.
+12. index.html - Home page template.
+13. layout.html - Base template for all pages except login & register page.
+14. layout2.html - Base template for login & register page.
+15. login.html - Login user page.
+16. payment_process.html - Page after completion of payment.
+17. payment.html - Payment page.
+18. register.html - Register user page.
+19. search.html - Flight search result page.
+20. ticket.html - Template for printing ticket(pdf).
+21. admin.py - Contains some models for access to the Django administrator.
+22. models.py - All models used in the application are created here.
+23. urls.py - This file handles all the URLs of the web application.
+24. views.py - This file contains all the application views.
+25. constant.py - This file contains the fee amount which is charged to the user for booking flight tickets.
+26. requirements.txt - This file contains all contains all the python packages that needs to be installed to run this web application.
+27. manage.py - This file is used basically as a command-line utility and for deploying, debugging, or running our web application.
